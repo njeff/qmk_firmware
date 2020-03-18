@@ -15,9 +15,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "numpad_j.h"
-#include "..\..\lib\lufa\LUFA\Drivers\Peripheral\SPI.h"
-#include <print.h>
-
 
 void keyboard_pre_init_kb(void) {
   // Set the layer LED IO as outputs
@@ -54,40 +51,14 @@ void matrix_init_kb(void) {
   
   matrix_init_user();
 
-  // Set SS to output and drive it high (not connected to anything)
-  // try to keep ATMega in master mode.
-  // PORTB |= (1 << 0);
-  // DDRB |= (1 << 0);
-
-  // Aside: Figure out why the ATMega doesn't stay in master mode.
-  // I suspect that the keyboard matrix scan initializing is somehow resetting this
-  // (Setting SS to input low)
-  // SPI_Init here doesn't do anything. But doing it in the matrix scan does work.
-  // I only need to do it once in matrix_scan_kb too.
+  rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD);
+  //rgblight_sethsv_noeeprom(205, 70, 100);
 }
 
 void matrix_scan_kb(void) {
   // put your looping keyboard code here
   // runs every cycle (a lot)
   matrix_scan_user();
-
-  // LED tests
-  SPI_Init(SPI_ORDER_MSB_FIRST | SPI_SCK_LEAD_FALLING |
-          SPI_SAMPLE_TRAILING | SPI_MODE_MASTER); 
-
-  SPI_SendByte(0);
-  for (int i = 0; i < 9; i++) {
-    for (int i = 0; i < 3; i++) {
-      SPI_SendByte(0xFF);
-    }
-    for (int i = 0; i < 1; i++) {
-      SPI_SendByte(0x00);
-    }
-  }
-  SPI_SendByte(0xFF);
-  for (uint16_t i = 0; i < 5 + 9 / 16; i++) {
-    SPI_SendByte(0);
-  }
 }
 
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {

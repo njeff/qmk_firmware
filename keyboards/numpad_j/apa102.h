@@ -1,10 +1,7 @@
 /*
- * light weight WS2812 lib include
+ * light weight APA102 lib include
  *
- * Version 2.3  - Nev 29th 2015
- * Author: Tim (cpldcpu@gmail.com)
- *
- * Please do not change this file! All configuration is handled in "ws2812_config.h"
+ * Author: njeff
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,9 +19,6 @@
 
 #pragma once
 
-#include <avr/io.h>
-#include <avr/interrupt.h>
-
 #include "color.h"
 
 /* User Interface
@@ -35,11 +29,8 @@
  *         pinmask (optional): Bitmask describing the output bin. e.g. _BV(PB0)
  *
  * The functions will perform the following actions:
- *         - Set the data-out pin as output
  *         - Send out the LED data
- *         - Wait 50�s to reset the LEDs
  */
 
 void apa102_setleds(LED_TYPE *ledarray, uint16_t number_of_leds);
-void apa102_setleds_pin(LED_TYPE *ledarray, uint16_t number_of_leds, uint8_t pinmask);
-void apa102_setleds_rgbw(LED_TYPE *ledarray, uint16_t number_of_leds);
+void apa102_setleds_pin(LED_TYPE *ledarray, uint16_t leds, uint8_t pinmask_DI, uint8_t pinmask_CLK);

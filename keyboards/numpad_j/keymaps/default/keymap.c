@@ -60,8 +60,7 @@ void keyboard_post_init_user(void) {
 }
 
 void matrix_init_user(void) {
-  //rgblight_init();
-  //rgblight_show_solid_color(0x00,0xff,0x00);
+  rgblight_init();
 }
 
 void matrix_scan_user(void) {

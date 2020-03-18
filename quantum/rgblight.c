@@ -701,7 +701,7 @@ void rgblight_set(void) {
         convert_rgb_to_rgbw(&start_led[i]);
     }
 #    endif
-    ws2812_setleds(start_led, num_leds);
+    apa102_setleds(start_led, num_leds);
 }
 #endif
 

@@ -34,3 +34,6 @@ ENCODER_ENABLE = yes
 KEY_LOCK_ENABLE = yes
 DIP_SWITCH_ENABLE = yes
 RGBLIGHT_ENABLE = yes
+
+# TODO: move back to drivers after fixing Makefile common_features.mk to support
+SRC += apa102.c
