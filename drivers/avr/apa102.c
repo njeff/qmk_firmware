@@ -31,7 +31,7 @@ void apa102_send_array(LED_TYPE *data, uint16_t leds) {  // Data is struct of 3 
 
     uint16_t i = 0;
     for (i = 0; i < leds; i++) {
-        SPI_SendByte(0b11100001); // low brightness for now
+        SPI_SendByte(0b11101001); // low brightness for now
         SPI_SendByte(data[i].b);
         SPI_SendByte(data[i].g);
         SPI_SendByte(data[i].r);

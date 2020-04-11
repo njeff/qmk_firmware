@@ -701,7 +701,12 @@ void rgblight_set(void) {
         convert_rgb_to_rgbw(&start_led[i]);
     }
 #    endif
+    
+#     ifdef APA102_AVR_SPI_DRIVER
     apa102_setleds(start_led, num_leds);
+#     else
+    ws2812_setleds(start_led, num_leds);
+#     endif
 }
 #endif
 

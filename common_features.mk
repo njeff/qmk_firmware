@@ -167,7 +167,12 @@ ifeq ($(strip $(RGBLIGHT_ENABLE)), yes)
     ifeq ($(strip $(RGBLIGHT_CUSTOM_DRIVER)), yes)
         OPT_DEFS += -DRGBLIGHT_CUSTOM_DRIVER
     else
-        WS2812_DRIVER_REQUIRED := yes
+        ifeq ($(strip $(APA102_AVR_SPI_DRIVER)), yes)
+            OPT_DEFS += -DAPA102_DRIVER
+            SRC += $(DRIVER_PATH)/avr/apa102.c
+        else
+            WS2812_DRIVER_REQUIRED := yes
+        endif
     endif
 endif
 

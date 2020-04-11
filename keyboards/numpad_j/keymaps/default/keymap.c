@@ -21,7 +21,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /*
         BASE LAYER
    /---------------------------------------`
-   | NUM_LOCK|    /    |    *    |    -    |
+   |   ESC   |    /    |    *    |    -    |
    |---------|---------|---------|---------|
    |    7    |    8    |    9    |    +    |
    |---------|---------|---------|---------|
@@ -33,11 +33,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    \---------------------------------------'
   */
   [_BASE] = LAYOUT(
-    KC_V,      KC_KP_SLASH,    KC_KP_ASTERISK,     KC_KP_MINUS, 
-    KC_7,      KC_8,           KC_9,               KC_BSPC, 
-    KC_4,      KC_5,           KC_6,               KC_ESC, 
+    KC_ESC,    KC_KP_SLASH,    KC_KP_ASTERISK,     KC_KP_MINUS, 
+    KC_7,      KC_8,           KC_9,               KC_KP_PLUS, 
+    KC_4,      KC_5,           KC_6,               KC_KP_PLUS, 
     KC_1,      KC_2,           KC_3,               KC_TAB, 
-    KC_0,      KC_0,           KC_DOT,             KC_ENTER
+    KC_0,      KC_0,           KC_DOT,             KC_KP_ENTER
   ),
 };
 

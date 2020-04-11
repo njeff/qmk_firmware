@@ -1,6 +1,6 @@
 # numpad_j
 
-A numpad with rotary encoder.
+A numpad with rotary encoder and RGB underglow.
 
 Make example for this keyboard (after setting up your build environment):
 
