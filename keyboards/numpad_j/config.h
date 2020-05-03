@@ -50,6 +50,7 @@
 /* Rotary encoder */
 #define ENCODERS_PAD_A { D2 }
 #define ENCODERS_PAD_B { D3 }
+#define DIP_SWITCH_PINS { D4 }
 
 /* LED layer indicators */
 #define LAYER_INDICATOR_LED_0 F7
@@ -58,7 +59,9 @@
 #define BOOTMAGIC_LITE_ROW 0
 #define BOOTMAGIC_LITE_COLUMN 0
 
-#define RGBLIGHT_ANIMATIONS
+#define TAPPING_TOGGLE 2
+#define RGB_DI_PIN B2
+#define RGB_CLK_PIN B1
 #define RGBLED_NUM 9
 #define APA102_AVR_SPI_DRIVER
 

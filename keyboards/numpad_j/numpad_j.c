@@ -50,9 +50,6 @@ void matrix_init_kb(void) {
   }
   
   matrix_init_user();
-
-  rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD);
-  //rgblight_sethsv_noeeprom(205, 70, 100);
 }
 
 void matrix_scan_kb(void) {

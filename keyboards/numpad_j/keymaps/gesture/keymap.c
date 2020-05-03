@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+#include "APDS9960.h"
 
 #define _BASE 0
 
@@ -61,11 +62,66 @@ void keyboard_post_init_user(void) {
 
 void matrix_init_user(void) {
   rgblight_init();
-  rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD);
+  apds9960_init();
+  
+  wait_ms(1);
+  setProximityGain(PGAIN_2X);
+  wait_ms(1);
+  enableProximitySensor(false);
+  //enableLightSensor(false);
+  //wait_ms(1);
+  //enableGestureSensor(false);
+  rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+  rgblight_sethsv_noeeprom(128, 70, 100);
 }
 
-void matrix_scan_user(void) {
+//static uint16_t lastlight = 0;
 
+void matrix_scan_user(void) {
+  uint8_t data = 0;
+  if ( readProximity(&data) ) {
+    rgblight_sethsv_noeeprom(data, 255, 255);
+  }
+  
+  /*
+  uint16_t light = 0;
+  if (readAmbientLight(&light)) {
+    if (light > 255) {
+      light = 255;
+    }
+    light = (light*1 + lastlight*99) / (100);
+    rgblight_sethsv_noeeprom(255, 0, light);
+    lastlight = light;
+  }
+  */
+  /*
+  if ( isGestureAvailable() ) {
+    switch ( readGesture() ) {
+      case DIR_UP:
+        rgblight_sethsv_noeeprom(0, 70, 100);
+        break;
+      case DIR_DOWN:
+        rgblight_sethsv_noeeprom(50, 70, 100);
+        break;
+      case DIR_LEFT:
+        rgblight_sethsv_noeeprom(100, 70, 100);
+        break;
+      case DIR_RIGHT:
+        rgblight_sethsv_noeeprom(150, 70, 100);
+        break;
+      case DIR_NEAR:
+        rgblight_sethsv_noeeprom(0, 70, 100);
+        break;
+      case DIR_FAR:
+        rgblight_sethsv_noeeprom(0, 70, 100);
+        break;
+      default:
+        //rgblight_sethsv_noeeprom(0, 0, 0);
+        break;
+    } 
+  }
+  */
+  
 }
 
 void led_set_user(uint8_t usb_led) {
