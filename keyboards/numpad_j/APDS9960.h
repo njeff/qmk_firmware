@@ -16,7 +16,7 @@
 #ifndef SparkFun_APDS9960_H
 #define SparkFun_APDS9960_H
 
-#define TIMEOUT                 1
+#define TIMEOUT                 5
 
 /* APDS-9960 I2C address */
 #define APDS9960_I2C_ADDR       (0x39 << 1)

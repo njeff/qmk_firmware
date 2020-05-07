@@ -143,7 +143,12 @@ int wireReadDataBlock(   uint8_t reg,
                          uint8_t *val, 
                          unsigned int len)
 {
-    return i2c_readReg(APDS9960_I2C_ADDR, reg, val, len, TIMEOUT) == I2C_STATUS_SUCCESS;
+    // kind of not correct but works here
+    if (i2c_readReg(APDS9960_I2C_ADDR, reg, val, len, TIMEOUT) == I2C_STATUS_SUCCESS) {
+        return len;
+    } else {
+        return 0;
+    }
 }
 
 
